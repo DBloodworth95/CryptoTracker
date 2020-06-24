@@ -36,7 +36,7 @@ public class MainController {
             public void handle(long now) {
                 if (cryptoPriceContainer.getLock().tryLock()) {
                     try {
-                        btcPriceLabel.setText(String.valueOf(cryptoPriceContainer.getBtcPrice()));
+                        btcPriceLabel.setText("£" + cryptoPriceContainer.getBtcPrice());
                     } finally {
                         cryptoPriceContainer.getLock().unlock();
                     }
