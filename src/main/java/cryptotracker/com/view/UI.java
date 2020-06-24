@@ -22,6 +22,7 @@ public class UI extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("CryptoTracker 0.1");
         primaryStage.show();
+        mainController.startPriceUpdater();
         mainController.animateBackground();
     }
 

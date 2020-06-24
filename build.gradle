@@ -19,4 +19,6 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.json', name: 'json', version: '20090211'
+    implementation 'com.squareup.okhttp3:mockwebserver:4.7.2'
 }
