@@ -15,11 +15,6 @@ public class CryptoPriceContainer {
         return lock;
     }
 
-    public void setBtcPrice(double btcPrice, String btcTimestamp) {
-        this.btcPrice = btcPrice;
-        this.btcTimestamp = btcTimestamp;
-    }
-
     public double getBtcPrice() {
         return btcPrice;
     }
