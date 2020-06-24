@@ -16,6 +16,8 @@ public class MainController {
     private Rectangle backgroundRect;
     @FXML
     private Label btcPriceLabel;
+    @FXML
+    private Label btcTimestampLabel;
 
     public void startPriceUpdater() {
         CryptoPriceContainer cryptoPriceContainer = new CryptoPriceContainer();
@@ -27,6 +29,7 @@ public class MainController {
                 if (cryptoPriceContainer.getLock().tryLock()) {
                     try {
                         btcPriceLabel.setText("£" + cryptoPriceContainer.getBtcPrice());
+                        btcTimestampLabel.setText(cryptoPriceContainer.getBtcTimestamp());
                     } finally {
                         cryptoPriceContainer.getLock().unlock();
                     }

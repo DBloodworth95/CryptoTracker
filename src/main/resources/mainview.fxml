@@ -8,6 +8,7 @@
    <children>
       <Rectangle fx:id="backgroundRect" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="400.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
       <Label fx:id="btcLabel" layoutX="150.0" layoutY="93.0" prefHeight="16.0" prefWidth="35.0" text="BTC" textFill="#00ff1d" />
-      <Label fx:id="btcPriceLabel" layoutX="241.0" layoutY="93.0" prefHeight="16.0" prefWidth="183.0" text="Test" textFill="#0ef52c" />
+      <Label fx:id="btcPriceLabel" layoutX="241.0" layoutY="93.0" prefHeight="16.0" prefWidth="115.0" text="Test" textFill="#0ef52c" />
+      <Label fx:id="btcTimestampLabel" layoutX="369.0" layoutY="93.0" prefHeight="16.0" prefWidth="218.0" text="Test" textFill="#0ef52c" />
    </children>
 </AnchorPane>

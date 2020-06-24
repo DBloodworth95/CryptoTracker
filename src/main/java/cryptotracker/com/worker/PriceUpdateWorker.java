@@ -55,6 +55,11 @@ public class PriceUpdateWorker extends Thread {
         return jsonObject.getJSONObject("bpi").getJSONObject("GBP").getDouble("rate_float");
     }
 
+    private String parseTimestamp(String str) throws JSONException {
+        JSONObject jsonObject = new JSONObject(str);
+        return jsonObject.getJSONObject("time").getString("updated");
+    }
+
     private Callback getCallback() {
         return new Callback() {
             @Override
@@ -67,6 +72,8 @@ public class PriceUpdateWorker extends Thread {
                 String str = Objects.requireNonNull(response.body()).string();
                 try {
                     Double price = parsePrice(str);
+                    String timeStamp = parseTimestamp(str);
+                    cryptoPriceContainer.setBtcTimestamp(timeStamp);
                     cryptoPriceContainer.setBtcPrice(price);
                     System.out.println("Success");
                 } catch (JSONException e) {
