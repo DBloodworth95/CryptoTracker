@@ -31,24 +31,7 @@ public class PriceUpdateWorker extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                getBitcoinPrice(new Callback() {
-                    @Override
-                    public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                        System.out.println("Failed");
-                    }
-
-                    @Override
-                    public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                        String str = Objects.requireNonNull(response.body()).string();
-                        try {
-                            Double price = parsePrice(str);
-                            cryptoPriceContainer.setBtcPrice(price);
-                            System.out.println("Success");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
+                getBitcoinPrice(getCallback());
             } finally {
                 cryptoPriceContainer.getLock().unlock();
             }
@@ -70,5 +53,26 @@ public class PriceUpdateWorker extends Thread {
     private Double parsePrice(String str) throws JSONException {
         JSONObject jsonObject = new JSONObject(str);
         return jsonObject.getJSONObject("bpi").getJSONObject("GBP").getDouble("rate_float");
+    }
+
+    private Callback getCallback() {
+        return new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                System.out.println("Failed");
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String str = Objects.requireNonNull(response.body()).string();
+                try {
+                    Double price = parsePrice(str);
+                    cryptoPriceContainer.setBtcPrice(price);
+                    System.out.println("Success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
     }
 }
